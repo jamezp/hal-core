@@ -272,6 +272,16 @@ public interface UIConstants extends Constants {
 
     String subsys_logging_formatter();
 
+    String subsys_logging_custom_formatter();
+
+    String subsys_logging_named_formatter();
+
+    String subsys_logging_pattern_formatter();
+
+    String subsys_logging_pattern();
+
+    String subsys_logging_color_map();
+
     String subsys_logging_append();
 
     String subsys_logging_fileRelativeTo();
@@ -717,6 +727,10 @@ public interface UIConstants extends Constants {
     String subsys_logging_consoleHandlers_desc();
 
     String subsys_logging_loggers_desc();
+
+    String subsys_logging_customFormatter_desc();
+
+    String subsys_logging_patternFormatter_desc();
 
     String subsys_threads_factory_desc();
 

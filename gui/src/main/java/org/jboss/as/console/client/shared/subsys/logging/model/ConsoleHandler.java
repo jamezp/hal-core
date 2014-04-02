@@ -1,19 +1,19 @@
-/* 
- * JBoss, Home of Professional Open Source 
+/*
+ * JBoss, Home of Professional Open Source
  * Copyright 2011 Red Hat Inc. and/or its affiliates and other contributors
- * as indicated by the @author tags. All rights reserved. 
- * See the copyright.txt in the distribution for a 
+ * as indicated by the @author tags. All rights reserved.
+ * See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
- * This copyrighted material is made available to anyone wishing to use, 
- * modify, copy, or redistribute it subject to the terms and conditions 
- * of the GNU Lesser General Public License, v. 2.1. 
- * This program is distributed in the hope that it will be useful, but WITHOUT A 
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
- * PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details. 
- * You should have received a copy of the GNU Lesser General Public License, 
- * v.2.1 along with this distribution; if not, write to the Free Software 
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
+ * This copyrighted material is made available to anyone wishing to use,
+ * modify, copy, or redistribute it subject to the terms and conditions
+ * of the GNU Lesser General Public License, v. 2.1.
+ * This program is distributed in the hope that it will be useful, but WITHOUT A
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ * You should have received a copy of the GNU Lesser General Public License,
+ * v.2.1 along with this distribution; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA  02110-1301, USA.
  */
 package org.jboss.as.console.client.shared.subsys.logging.model;
@@ -30,7 +30,7 @@ import org.jboss.as.console.client.widgets.forms.FormItem;
  */
 @Address("/subsystem=logging/console-handler={0}")
 public interface ConsoleHandler extends NamedEntity, HasLevel {
-    
+
     @Override
     @Binding(detypedName="name", key=true)
     @FormItem(defaultValue="",
@@ -41,7 +41,7 @@ public interface ConsoleHandler extends NamedEntity, HasLevel {
     public String getName();
     @Override
     public void setName(String name);
-    
+
     @Override
     @Binding(detypedName="level")
     @FormItem(defaultValue="INFO",
@@ -52,7 +52,7 @@ public interface ConsoleHandler extends NamedEntity, HasLevel {
     public String getLevel();
     @Override
     public void setLevel(String logLevel);
-    
+
     @Binding(detypedName="encoding")
     @FormItem(defaultValue="UTF-8",
               localLabel="subsys_logging_encoding",
@@ -61,12 +61,12 @@ public interface ConsoleHandler extends NamedEntity, HasLevel {
               formItemTypeForAdd="TEXT_BOX")
     public String getEncoding();
     public void setEncoding(String encoding);
-    
+
     /* Filters not implemented yet
     public String getFilter();
     public void setFilter(String filter);
     */
-    
+
     @Binding(detypedName="formatter")
     @FormItem(defaultValue="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n",
               localLabel="subsys_logging_formatter",
@@ -75,7 +75,15 @@ public interface ConsoleHandler extends NamedEntity, HasLevel {
               formItemTypeForAdd="FREE_FORM_TEXT_BOX")
     public String getFormatter();
     public void setFormatter(String formatter);
-    
+
+    @Binding(detypedName = "named-formatter")
+    @FormItem(localLabel = "subsys_logging_named_formatter",
+            required = false,
+            formItemTypeForEdit="FREE_FORM_TEXT_BOX",
+            formItemTypeForAdd="FREE_FORM_TEXT_BOX")
+    public String getNamedFormatter();
+    public void setNamedFormatter(String formatterName);
+
     @Binding(detypedName="target")
     @FormItem(defaultValue="System.out",
               localLabel="subsys_logging_target",
@@ -84,7 +92,7 @@ public interface ConsoleHandler extends NamedEntity, HasLevel {
               formItemTypeForAdd="COMBO_BOX")
     public String getTarget();
     public void setTarget(String target);
-    
+
     @Binding(detypedName="autoflush")
     @FormItem(defaultValue="true",
             localLabel="subsys_logging_autoFlush",

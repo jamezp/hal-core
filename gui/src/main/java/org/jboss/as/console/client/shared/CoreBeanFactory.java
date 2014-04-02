@@ -99,9 +99,11 @@ import org.jboss.as.console.client.shared.subsys.jmx.model.JMXSubsystem;
 import org.jboss.as.console.client.shared.subsys.jpa.model.JpaSubsystem;
 import org.jboss.as.console.client.shared.subsys.logging.model.AsyncHandler;
 import org.jboss.as.console.client.shared.subsys.logging.model.ConsoleHandler;
+import org.jboss.as.console.client.shared.subsys.logging.model.CustomFormatter;
 import org.jboss.as.console.client.shared.subsys.logging.model.CustomHandler;
 import org.jboss.as.console.client.shared.subsys.logging.model.FileHandler;
 import org.jboss.as.console.client.shared.subsys.logging.model.Logger;
+import org.jboss.as.console.client.shared.subsys.logging.model.PatternFormatter;
 import org.jboss.as.console.client.shared.subsys.logging.model.PeriodicRotatingFileHandler;
 import org.jboss.as.console.client.shared.subsys.logging.model.RootLogger;
 import org.jboss.as.console.client.shared.subsys.logging.model.SizeRotatingFileHandler;
@@ -214,6 +216,8 @@ public interface CoreBeanFactory {
     AutoBean<PeriodicRotatingFileHandler> periodicRotatingFileHandler();
     AutoBean<SizeRotatingFileHandler> sizeRotatingFileHandler();
     AutoBean<CustomHandler> customHandler();
+    AutoBean<PatternFormatter> patternFormatter();
+    AutoBean<CustomFormatter> customFormatter();
 
     AutoBean<DeploymentScanner> deploymentScanner();
     AutoBean<SocketBinding> socketBinding();

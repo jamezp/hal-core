@@ -50,6 +50,9 @@ public class LoggingView extends SuspendableViewImpl implements LoggingPresenter
     private CustomHandlerSubview customHandlerSubview;
     private DefaultTabLayoutPanel loggersTabs;
 
+    private PatternFormatterSubview patternFormatterSubview;
+    private CustomFormatterSubview customFormatterSubview;
+
 
     @Inject
     public LoggingView(ApplicationMetaData applicationMetaData, DispatchAsync dispatcher, HandlerListManager handlerListManager) {
@@ -65,6 +68,9 @@ public class LoggingView extends SuspendableViewImpl implements LoggingPresenter
         asyncHandlerSubview = new AsyncHandlerSubview(applicationMetaData, dispatcher, handlerListManager);
         customHandlerSubview = new CustomHandlerSubview(applicationMetaData, dispatcher, handlerListManager);
         syslogHandlerView = new SyslogHandlerView(applicationMetaData, dispatcher, handlerListManager);
+
+        patternFormatterSubview = new PatternFormatterSubview(applicationMetaData, dispatcher);
+        customFormatterSubview = new CustomFormatterSubview(applicationMetaData, dispatcher);
 
         handlerListManager.addHandlerConsumers(rootLoggerSubview, loggerSubview, asyncHandlerSubview);
         handlerListManager.addHandlerProducers(consoleHandlerSubview,
@@ -101,6 +107,12 @@ public class LoggingView extends SuspendableViewImpl implements LoggingPresenter
 
         loggersTabs.add(handlerPages.asWidget(), Console.CONSTANTS.subsys_logging_handler(), true);
 
+        // formatter
+        PagedView formatterPages = new PagedView(true);
+        formatterPages.addPage(Console.CONSTANTS.subsys_logging_pattern_formatter(), patternFormatterSubview.asWidget());
+        formatterPages.addPage(Console.CONSTANTS.subsys_logging_custom_formatter(), customFormatterSubview.asWidget());
+        loggersTabs.add(formatterPages.asWidget(), Console.CONSTANTS.subsys_logging_formatter(), true);
+
         loggersTabs.selectTab(0);
         handlerPages.showPage(0);
 
@@ -131,5 +143,8 @@ public class LoggingView extends SuspendableViewImpl implements LoggingPresenter
         asyncHandlerSubview.initialLoad();
         customHandlerSubview.initialLoad();
         syslogHandlerView.initialLoad();
+
+        patternFormatterSubview.initialLoad();
+        customFormatterSubview.initialLoad();
     }
 }
